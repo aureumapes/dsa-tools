@@ -11,5 +11,6 @@ func main() {
 	js.Global().Set("addMinute", time.AddMinute())
 	js.Global().Set("addDay", time.AddDay())
 	js.Global().Set("pad", time.Pad())
+	js.Global().Set("saveStatus", time.SaveStatus())
 	select {}
 }
