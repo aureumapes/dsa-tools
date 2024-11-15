@@ -71,3 +71,14 @@ func HourName() js.Func {
 		return nil
 	})
 }
+
+func Pad() js.Func {
+	return js.FuncOf(func(this js.Value, args []js.Value) any {
+		d := args[0].Int()
+		if d < 10 {
+			return fmt.Sprintf("0%d", d)
+		} else {
+			return fmt.Sprintf("%d", d)
+		}
+	})
+}

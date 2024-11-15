@@ -37,6 +37,7 @@ func AddMinute() js.Func {
 		timeStr = fmt.Sprintf("%s:%s", js.Global().Call("pad", hour), js.Global().Call("pad", minute))
 		js.Global().Get("document").Call("getElementById", "time").Set("innerHTML", timeStr)
 		js.Global().Call("hourName")
+		js.Global().Call("saveStatus")
 		return nil
 	})
 }

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.DebugMode)
 	router := gin.Default()
 
 	database.Db.AutoMigrate(&database.Date{})
@@ -29,6 +29,10 @@ func main() {
 			"Jubileen":  "/jubilee",
 			"Abenteuer": "/adventure",
 		})
+	})
+
+	router.GET("/favicon.ico", func(context *gin.Context) {
+		context.Redirect(http.StatusPermanentRedirect, "/image/dsa.png")
 	})
 	router.GET("/char/:name", route.Char)
 	router.GET("/dates", route.EntryRead)

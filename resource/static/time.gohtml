@@ -120,8 +120,6 @@
         <button onclick="addMinute(30)">+½h</button>
         <button onclick="addMinute(1)">+1m</button>
     </div>
-
-    <!-- Eingabebereich für Notizen -->
     <label>
         <textarea id="entry-text" placeholder="Was geschah?"></textarea>
     </label>
@@ -130,35 +128,12 @@
     <button onclick="submitEntry()">Abschicken</button>
 </div>
 <script>
-    function addDay() {
-        const months = ["PRA", "RON", "EFF", "TRA", "BOR", "HES", "FIR", "TSA", "PHE", "PER", "ING", "RAH", "NL"]
-        document.getElementById("time").innerHTML = "00:00"
-        let date = document.getElementById("date").innerHTML.split(" ")
-        let year = Number(date[2].split("BF")[0])
-        let monthName = date[1]
-        let month = months.indexOf(monthName) + 1
-        let day = Number(date[0])
-        day++
-        if (month !== 13 && day > 30) {
-            month++
-            day = 1
-        } else if (month === 13 && day > 5) {
-            month = 1
-            day = 1
-            year++
-        }
-        document.getElementById("date").innerHTML = `${day}. ${months[month - 1]} ${year}BF`
-        saveStatus()
-    }
-
     function saveStatus() {
         let req2 = new XMLHttpRequest()
         req2.open("PUT", "/save")
         req2.send(document.getElementById("date").innerHTML)
     }
-
     function pad(d) {
-        return (d < 10) ? '0' + d.toString() : d.toString();
     }
 </script>
 </body>
