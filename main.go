@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	gin.SetMode(gin.DebugMode)
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
 	database.Db.AutoMigrate(&database.Date{})
