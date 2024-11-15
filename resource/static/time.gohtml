@@ -151,32 +151,6 @@
         saveStatus()
     }
 
-
-    function addMinute(addMinutes) {
-        let hours = Number(document.getElementById("time").innerHTML.split(":")[0])
-        let minutes = Number(document.getElementById("time").innerHTML.split(":")[1])
-        let colors = ["#303050", "#354264", "#385676", "#3a6a85", "#3e7f91", "#48949a", "#59a8a0", "#72bca3", "#90cea4", "#b3dfa5", "#d8eea7", "#fffcad"]
-        minutes += addMinutes
-        if (minutes >= 60) {
-            minutes -= 60
-            hours += 1
-        }
-        if (hours >= 24) {
-            hours = 0
-            minutes = 0
-            addDay()
-        }
-
-        if (hours <= 12) {
-            document.getElementById("time").style.background = colors[hours - 1]
-        } else {
-            document.getElementById("time").style.background = colors.reverse()[hours - 13]
-        }
-        document.getElementById("time").innerHTML = pad(hours) + ":" + pad(minutes)
-        hourName()
-        saveStatus()
-    }
-
     function saveStatus() {
         let req2 = new XMLHttpRequest()
         req2.open("PUT", "/save")
