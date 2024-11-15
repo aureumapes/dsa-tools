@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender</title>
+    <style>
+        /* Grundlegendes Layout und Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Styling für Datum, Uhrzeit und Stunde */
+        #date, #time, #name {
+            font-size: 30px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        #date {
+            background-color: #606060;
+        }
+
+        #time {
+            background-color: #003366;
+        }
+
+        #name {
+            background: gold;
+            color: black;
+        }
+
+        #jubilees {
+            background: goldenrod;
+            color: #FFF;
+        }
+
+        /* Buttons und ihre Gestaltung */
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #388e3c;
+        }
+
+        /* Textarea für Notizen */
+        textarea {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        /* Platzhalter Text */
+        textarea::placeholder {
+            color: #888;
+        }
+
+        /* Container für Buttons und Eingabefeld */
+        .container {
+            margin-top: 20px;
+        }
+
+        /* Layout für Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .button-group button {
+            margin: 5px;
+        }
+    </style>
+    <script src="wasm/wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("wasm/time.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+</head>
+<body>
+
+<div contenteditable="true" id="date">{{.DATE}}</div>
+<div id="time">00:00</div>
+<div id="name">Praiosstunde</div>
+<div id="jubilees">
+    {{range .JUBILEES}}
+        <li>{{.}}</li>
+    {{end}}
+</div>
+
+<div class="container">
+    <!-- Button-Gruppe für Datum und Uhrzeit -->
+    <div class="button-group">
+        <button onclick="addDay()">+1d</button>
+        <button onclick="addMinute(60)">+1h</button>
+        <button onclick="addMinute(30)">+½h</button>
+        <button onclick="addMinute(1)">+1m</button>
+    </div>
+
+    <!-- Eingabebereich für Notizen -->
+    <label>
+        <textarea id="entry-text" placeholder="Was geschah?"></textarea>
+    </label>
+    <input id="jubilee" type="checkbox"> Jubiläum?
+    <br>
+    <button onclick="submitEntry()">Abschicken</button>
+</div>
+<script>
+    function addDay() {
+        const months = ["PRA", "RON", "EFF", "TRA", "BOR", "HES", "FIR", "TSA", "PHE", "PER", "ING", "RAH", "NL"]
+        document.getElementById("time").innerHTML = "00:00"
+        let date = document.getElementById("date").innerHTML.split(" ")
+        let year = Number(date[2].split("BF")[0])
+        let monthName = date[1]
+        let month = months.indexOf(monthName) + 1
+        let day = Number(date[0])
+        day++
+        if (month !== 13 && day > 30) {
+            month++
+            day = 1
+        } else if (month === 13 && day > 5) {
+            month = 1
+            day = 1
+            year++
+        }
+        document.getElementById("date").innerHTML = `${day}. ${months[month - 1]} ${year}BF`
+        saveStatus()
+    }
+
+
+    function addMinute(addMinutes) {
+        let hours = Number(document.getElementById("time").innerHTML.split(":")[0])
+        let minutes = Number(document.getElementById("time").innerHTML.split(":")[1])
+        let colors = ["#303050", "#354264", "#385676", "#3a6a85", "#3e7f91", "#48949a", "#59a8a0", "#72bca3", "#90cea4", "#b3dfa5", "#d8eea7", "#fffcad"]
+        minutes += addMinutes
+        if (minutes >= 60) {
+            minutes -= 60
+            hours += 1
+        }
+        if (hours >= 24) {
+            hours = 0
+            minutes = 0
+            addDay()
+        }
+
+        if (hours <= 12) {
+            document.getElementById("time").style.background = colors[hours - 1]
+        } else {
+            document.getElementById("time").style.background = colors.reverse()[hours - 13]
+        }
+        document.getElementById("time").innerHTML = pad(hours) + ":" + pad(minutes)
+        hourName()
+        saveStatus()
+    }
+
+    function saveStatus() {
+        let req2 = new XMLHttpRequest()
+        req2.open("PUT", "/save")
+        req2.send(document.getElementById("date").innerHTML)
+    }
+
+    function pad(d) {
+        return (d < 10) ? '0' + d.toString() : d.toString();
+    }
+</script>
+</body>
+</html>

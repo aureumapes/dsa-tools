@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Praiosläufe {{.MOON}} {{.YEAR}}BF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h3 {
+            font-size: 20px;
+            color: #4CAF50;
+        }
+        a {
+            font-size: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 5px;
+            display: inline-block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<a href="/dates/{{.YEAR}}">{{.YEAR}}BF</a>
+{{range .DAYS}}
+    <h3 style="margin-bottom: 9px;">{{.Name}}</h3>
+        {{range .Entry}}
+            <b style="margin-left: 40px;">{{.}}</b><br>
+        {{end}}
+{{end}}
+</body>
+</html>
