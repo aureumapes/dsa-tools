@@ -93,7 +93,7 @@
             margin: 5px;
         }
     </style>
-    <script src="wasm/wasm_exec.js"></script>
+    <script src="https://cdn.rawgit.com/golang/go/refs/heads/master/lib/wasm/wasm_exec.js"></script>
     <script>
         const go = new Go();
         WebAssembly.instantiateStreaming(fetch("wasm/time.wasm"), go.importObject).then((result) => {
