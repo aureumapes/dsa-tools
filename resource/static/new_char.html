@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neuer Charakter</title>
+    <script src="https://cdn.rawgit.com/golang/go/refs/heads/master/lib/wasm/wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("wasm/new_char.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+</head>
+<body>
+<textarea id="name" placeholder="Name"></textarea>
+<textarea id="description" placeholder="Beschreibung"></textarea>
+<textarea id="tday">Tsatag</textarea>
+<textarea id="bday">Boronstag</textarea>
+<textarea id="member" placeholder="Mitglied von"></textarea>
+<button onclick="send()">Abschicken</button>
+</body>
+</html>

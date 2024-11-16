@@ -19,9 +19,9 @@ func main() {
 
 	router.LoadHTMLGlob("resource/static/*html")
 
-	router.GET("/time", route.Time)
 	router.PUT("/save", route.Save)
 	router.PUT("/entry", route.Entry)
+	router.PUT("/newchar", route.NewCharPut)
 
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
@@ -31,6 +31,8 @@ func main() {
 		})
 	})
 
+	router.GET("/time", route.Time)
+	router.GET("/newchar", route.NewCharGet)
 	router.GET("/favicon.ico", func(context *gin.Context) {
 		context.Redirect(http.StatusPermanentRedirect, "/image/dsa.png")
 	})

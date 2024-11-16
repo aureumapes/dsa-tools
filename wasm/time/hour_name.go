@@ -1,4 +1,4 @@
-package time
+package main
 
 import (
 	"encoding/hex"
