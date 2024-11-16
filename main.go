@@ -23,14 +23,10 @@ func main() {
 	router.PUT("/entry", route.Entry)
 	router.PUT("/newchar", route.NewCharPut)
 
+	router.GET("/chars", route.Chars)
 	router.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"Daten":     "/dates",
-			"Jubileen":  "/jubilee",
-			"Abenteuer": "/adventure",
-		})
+		ctx.HTML(http.StatusOK, "index.html", nil)
 	})
-
 	router.GET("/time", route.Time)
 	router.GET("/newchar", route.NewCharGet)
 	router.GET("/favicon.ico", func(context *gin.Context) {

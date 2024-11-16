@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalender</title>
     <style>
-        /* Grundlegendes Layout und Styling */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
@@ -13,8 +12,6 @@
             text-align: center;
             padding: 20px;
         }
-
-        /* Styling für Datum, Uhrzeit und Stunde */
         #date, #time, #name {
             font-size: 30px;
             margin: 10px;
@@ -22,26 +19,20 @@
             border-radius: 8px;
             color: white;
         }
-
         #date {
             background-color: #606060;
         }
-
         #time {
             background-color: #003366;
         }
-
         #name {
             background: gold;
             color: black;
         }
-
         #jubilees {
             background: goldenrod;
             color: #FFF;
         }
-
-        /* Buttons und ihre Gestaltung */
         button {
             margin: 10px;
             padding: 10px 20px;
@@ -53,16 +44,12 @@
             color: white;
             transition: background-color 0.3s ease;
         }
-
         button:hover {
             background-color: #45a049;
         }
-
         button:active {
             background-color: #388e3c;
         }
-
-        /* Textarea für Notizen */
         textarea {
             width: 80%;
             padding: 10px;
@@ -71,24 +58,17 @@
             border: 1px solid #ccc;
             margin-top: 10px;
         }
-
-        /* Platzhalter Text */
         textarea::placeholder {
             color: #888;
         }
-
-        /* Container für Buttons und Eingabefeld */
         .container {
             margin-top: 20px;
         }
-
-        /* Layout für Buttons */
         .button-group {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .button-group button {
             margin: 5px;
         }
@@ -113,7 +93,6 @@
 </div>
 
 <div class="container">
-    <!-- Button-Gruppe für Datum und Uhrzeit -->
     <div class="button-group">
         <button onclick="addDay()">+1d</button>
         <button onclick="addMinute(60)">+1h</button>
