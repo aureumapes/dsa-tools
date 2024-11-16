@@ -37,10 +37,10 @@ func main() {
 	router.GET("/jubilee", route.ReadJubilees)
 	router.GET("/dates/:year", route.ReadMonths)
 	router.GET("/dates/:year/:month", route.ReadDays)
-	router.GET("/image/:img", func(ctx *gin.Context) { ctx.File("resource/images/" + ctx.Params.ByName("img")) })
 	router.GET("/adventure/", route.Adventures)
 	router.GET("/adventure/:adv", route.Adventure)
 
+	router.StaticFS("/image", http.Dir("resource/images"))
 	router.StaticFS("/wasm", http.Dir("resource/static/wasm"))
 	router.Run(":4921")
 }
