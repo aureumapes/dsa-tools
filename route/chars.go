@@ -9,5 +9,5 @@ import (
 func Chars(ctx *gin.Context) {
 	var chars []database.Char
 	database.Db.Find(&chars)
-	ctx.HTML(http.StatusOK, "chars.gohtml", chars)
+	ctx.HTML(http.StatusOK, "chars.html", chars)
 }

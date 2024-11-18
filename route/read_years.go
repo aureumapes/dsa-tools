@@ -21,7 +21,7 @@ func EntryRead(ctx *gin.Context) {
 				years = append(years)
 			}
 		}
-		ctx.HTML(http.StatusOK, "display_aeon.gohtml", gin.H{"YEARS": years})
+		ctx.HTML(http.StatusOK, "display_aeon.html", gin.H{"YEARS": years})
 		return
 	}
 }
