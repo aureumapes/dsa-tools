@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        #date, #time, #name {
+            font-size: 30px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+        }
+        #date {
+            background-color: #606060;
+        }
+        #time {
+            background-color: #003366;
+        }
+        #name {
+            background: gold;
+            color: black;
+        }
+        #jubilees {
+            background: goldenrod;
+            color: #FFF;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:active {
+            background-color: #388e3c;
+        }
+        textarea {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+        textarea::placeholder {
+            color: #888;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .button-group button {
+            margin: 5px;
+        }
+    </style>
+    <script src="https://cdn.rawgit.com/golang/go/refs/heads/master/lib/wasm/wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("wasm/time.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+</head>
+<body>
+
+<div contenteditable="true" id="date">{{.DATE}}</div>
+<div id="time">00:00</div>
+<div id="name">Praiosstunde</div>
+<div id="jubilees">
+    {{range .JUBILEES}}
+        <li>{{.}}</li>
+    {{end}}
+</div>
+
+<div class="container">
+    <div class="button-group">
+        <button onclick="addDay()">+1d</button>
+        <button onclick="addMinute(60)">+1h</button>
+        <button onclick="addMinute(30)">+½h</button>
+        <button onclick="addMinute(1)">+1m</button>
+    </div>
+    <label>
+        <textarea id="entry-text" placeholder="Was geschah?"></textarea>
+    </label>
+    <input id="jubilee" type="checkbox"> Jubiläum?
+    <br>
+    <button onclick="submitEntry()">Abschicken</button>
+</div>
+</body>
+</html>

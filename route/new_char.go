@@ -14,6 +14,10 @@ func NewCharGet(ctx *gin.Context) {
 func NewCharPut(ctx *gin.Context) {
 	body, _ := io.ReadAll(ctx.Request.Body)
 	var char database.Char
-	json.Unmarshal(body, &char)
+	err := json.Unmarshal(body, &char)
+	if err != nil {
+		println(err.Error())
+		return
+	}
 	database.Db.Create(&char)
 }

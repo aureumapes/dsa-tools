@@ -16,13 +16,21 @@ func main() {
 	database.Db.AutoMigrate(&database.Jubilee{})
 	database.Db.AutoMigrate(&database.Adventure{})
 	database.Db.AutoMigrate(&database.Char{})
+	database.Db.AutoMigrate(&database.File{})
 
-	router.LoadHTMLGlob("resource/static/*html")
+	router.LoadHTMLGlob("resource/static/*/*html")
 
 	router.PUT("/save", route.Save)
 	router.PUT("/entry", route.Entry)
 	router.PUT("/newchar", route.NewCharPut)
 
+	router.NoRoute(func(context *gin.Context) {
+		context.HTML(http.StatusNotFound, "404.html", gin.H{})
+	})
+
+	router.POST("/upload", route.UploadFilePost)
+
+	router.GET("/upload", route.UploadFileGet)
 	router.GET("/chars", route.Chars)
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", nil)
@@ -40,7 +48,8 @@ func main() {
 	router.GET("/adventure/", route.Adventures)
 	router.GET("/adventure/:adv", route.Adventure)
 
-	router.StaticFS("/image", http.Dir("resource/images"))
+	router.StaticFS("/files/", http.Dir("resource/files"))
+	router.StaticFS("/image", http.Dir("resource/static/images"))
 	router.StaticFS("/wasm", http.Dir("resource/static/wasm"))
 	router.Run(":4921")
 }
