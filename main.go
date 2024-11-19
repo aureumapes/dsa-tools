@@ -47,8 +47,8 @@ func main() {
 	router.GET("/dates/:year/:month", route.ReadDays)
 	router.GET("/adventure/", route.Adventures)
 	router.GET("/adventure/:adv", route.Adventure)
+	router.Group("/files").Any("/*file", route.FileGet)
 
-	router.StaticFS("/files/", http.Dir("resource/files"))
 	router.StaticFS("/image", http.Dir("resource/static/images"))
 	router.StaticFS("/wasm", http.Dir("resource/static/wasm"))
 	router.Run(":4921")
