@@ -59,6 +59,6 @@ func FileGet(ctx *gin.Context) {
 				filesStr = append(filesStr, strings.Split(fileN, "/")[0]+"/")
 			}
 		}
-		ctx.HTML(http.StatusOK, "files.html", filesStr)
+		ctx.HTML(http.StatusOK, "files.gohtml", filesStr)
 	}
 }

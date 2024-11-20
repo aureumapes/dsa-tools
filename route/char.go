@@ -10,5 +10,5 @@ func Char(ctx *gin.Context) {
 	name := ctx.Params.ByName("name")
 	var char database.Char
 	database.Db.Find(&char, "name = ?", name)
-	ctx.HTML(http.StatusOK, "display_char.html", char)
+	ctx.HTML(http.StatusOK, "display_char.gohtml", char)
 }

@@ -20,5 +20,5 @@ func Time(ctx *gin.Context) {
 			jubilees = append(jubilees, fmt.Sprintf("%d. %s", year, jubilee.Name))
 		}
 	}
-	ctx.HTML(http.StatusOK, "time.html", gin.H{"DATE": date, "JUBILEES": jubilees})
+	ctx.HTML(http.StatusOK, "time.gohtml", gin.H{"DATE": date, "JUBILEES": jubilees})
 }

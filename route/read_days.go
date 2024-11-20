@@ -41,7 +41,7 @@ func ReadDays(ctx *gin.Context) {
 			daysAndEntries = append(daysAndEntries, dayStruct)
 		}
 	}
-	ctx.HTML(http.StatusOK, "display_moon.html", gin.H{
+	ctx.HTML(http.StatusOK, "display_moon.gohtml", gin.H{
 		"DAYS": daysAndEntries,
 		"YEAR": ctx.Params.ByName("year"),
 		"MOON": ctx.Params.ByName("month"),
