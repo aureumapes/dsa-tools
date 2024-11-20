@@ -44,12 +44,12 @@ func main() {
 	router.PUT("/entry", post.Entry)
 	router.PUT("/newchar", post.NewCharPut)
 
-	router.GET("/upload", post.UploadFileGet)
+	router.GET("/upload", get.UploadFileGet)
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", nil)
 	})
-	router.GET("/time", post.Time)
-	router.GET("/newchar", post.NewCharGet)
+	router.GET("/time", get.Time)
+	router.GET("/newchar", get.NewCharGet)
 	router.GET("/favicon.ico", func(context *gin.Context) { context.Redirect(http.StatusPermanentRedirect, "/image/dsa.png") })
 	router.GET("/dates", get.ReadYears)
 	router.GET("/jubilee", get.ReadJubilees)
@@ -65,7 +65,7 @@ func main() {
 		GET("/", get.Chars).
 		GET("/:name", get.Char)
 	router.Group("/files").
-		Any("/*file", post.FileGet)
+		Any("/*file", get.Files)
 
 	router.StaticFS("/image", http.Dir("resource/static/images"))
 	router.StaticFS("/wasm", http.Dir("resource/static/wasm"))

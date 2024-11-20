@@ -7,10 +7,6 @@ import (
 	"io"
 )
 
-func NewCharGet(ctx *gin.Context) {
-	ctx.HTML(200, "new_char.html", nil)
-}
-
 func NewCharPut(ctx *gin.Context) {
 	body, _ := io.ReadAll(ctx.Request.Body)
 	var char database.Char

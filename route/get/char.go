@@ -18,3 +18,7 @@ func Chars(ctx *gin.Context) {
 	database.Db.Find(&chars)
 	ctx.HTML(http.StatusOK, "chars.gohtml", chars)
 }
+
+func NewCharGet(ctx *gin.Context) {
+	ctx.HTML(200, "new_char.html", nil)
+}
