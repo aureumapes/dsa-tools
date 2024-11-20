@@ -33,5 +33,5 @@ func ReadJubilees(ctx *gin.Context) {
 		}
 		returnJubilee += fmt.Sprintf("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%d - %s<br>", currDay, jubilee.Name)
 	}
-	ctx.HTML(http.StatusOK, "display_jubilees.gohtml", gin.H{"JUBILEES": template.HTML(returnJubilee)})
+	ctx.HTML(http.StatusOK, "display_jubilees.gohtml", template.HTML(returnJubilee))
 }
