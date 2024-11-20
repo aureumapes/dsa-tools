@@ -1,4 +1,4 @@
-package route
+package get
 
 import (
 	"github.com/aureumapes/dsa-tools/database"
@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func EntryRead(ctx *gin.Context) {
+func ReadYears(ctx *gin.Context) {
 	println(ctx.Params.ByName("year"), ctx.Params.ByName("month"), ctx.Params.ByName("day"))
 	if ctx.Params.ByName("year") == "" {
 		years := []string{}

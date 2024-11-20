@@ -1,4 +1,4 @@
-package route
+package get
 
 import (
 	"github.com/aureumapes/dsa-tools/database"

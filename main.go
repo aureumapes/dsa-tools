@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/aureumapes/dsa-tools/database"
-	"github.com/aureumapes/dsa-tools/route"
+	"github.com/aureumapes/dsa-tools/route/get"
+	"github.com/aureumapes/dsa-tools/route/post"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
@@ -35,37 +36,39 @@ func main() {
 	database.Db.AutoMigrate(&database.File{})
 
 	router.LoadHTMLGlob("resource/static/*/*html")
+	router.NoRoute(func(context *gin.Context) { context.HTML(http.StatusNotFound, "404.html", gin.H{}) })
 
-	router.PUT("/save", route.Save)
-	router.PUT("/entry", route.Entry)
-	router.PUT("/newchar", route.NewCharPut)
+	router.POST("/upload", post.UploadFilePost)
 
-	router.NoRoute(func(context *gin.Context) {
-		context.HTML(http.StatusNotFound, "404.html", gin.H{})
-	})
+	router.PUT("/save", post.Save)
+	router.PUT("/entry", post.Entry)
+	router.PUT("/newchar", post.NewCharPut)
 
-	router.POST("/upload", route.UploadFilePost)
-
-	router.GET("/upload", route.UploadFileGet)
-	router.GET("/chars", route.Chars)
+	router.GET("/upload", post.UploadFileGet)
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", nil)
 	})
-	router.GET("/time", route.Time)
-	router.GET("/newchar", route.NewCharGet)
-	router.GET("/favicon.ico", func(context *gin.Context) {
-		context.Redirect(http.StatusPermanentRedirect, "/image/dsa.png")
-	})
-	router.GET("/char/:name", route.Char)
-	router.GET("/dates", route.EntryRead)
-	router.GET("/jubilee", route.ReadJubilees)
-	router.GET("/dates/:year", route.ReadMonths)
-	router.GET("/dates/:year/:month", route.ReadDays)
-	router.GET("/adventure/", route.Adventures)
-	router.GET("/adventure/:adv", route.Adventure)
-	router.Group("/files").Any("/*file", route.FileGet)
+	router.GET("/time", post.Time)
+	router.GET("/newchar", post.NewCharGet)
+	router.GET("/favicon.ico", func(context *gin.Context) { context.Redirect(http.StatusPermanentRedirect, "/image/dsa.png") })
+	router.GET("/dates", get.ReadYears)
+	router.GET("/jubilee", get.ReadJubilees)
+
+	router.Group("/adventure/").
+		GET("/", get.Adventures).
+		GET("/:adv", get.Adventure)
+	router.Group("/dates").
+		GET("/", get.ReadYears).
+		GET("/:year", get.ReadMonths).
+		GET("/:year/:month", get.ReadDays)
+	router.Group("/chars").
+		GET("/", get.Chars).
+		GET("/:name", get.Char)
+	router.Group("/files").
+		Any("/*file", post.FileGet)
 
 	router.StaticFS("/image", http.Dir("resource/static/images"))
 	router.StaticFS("/wasm", http.Dir("resource/static/wasm"))
+
 	router.Run(":4921")
 }

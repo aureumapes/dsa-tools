@@ -1,4 +1,4 @@
-package route
+package get
 
 import (
 	"github.com/aureumapes/dsa-tools/database"
@@ -12,9 +12,7 @@ func Adventure(ctx *gin.Context) {
 	var adv database.Adventure
 	database.Db.Find(&adv, "number = ?", advNumber)
 	ctx.HTML(http.StatusOK, "adventure.gohtml", gin.H{
-		"NUMBER": adv.Number,
-		"NAME":   adv.Name,
-		"HEROS":  strings.Split(adv.Heroes, ", "),
-		"TIME":   adv.Time,
+		"adv":    adv,
+		"Heroes": strings.Split(adv.Heroes, ", "),
 	})
 }
