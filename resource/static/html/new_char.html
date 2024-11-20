@@ -4,52 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neuer Charakter</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-        }
-        textarea {
-            width: 80%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        textarea::placeholder {
-            color: #888;
-        }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        button:active {
-            background-color: #388e3c;
-        }
-        .container {
-            margin-top: 20px;
-        }
-        h2 {
-            color: #2c3e50;
-        }
-    </style>
+    <link rel="stylesheet" href="/image/style.css">
     <script src="https://cdn.rawgit.com/golang/go/refs/heads/master/lib/wasm/wasm_exec.js"></script>
     <script>
         const go = new Go();
