@@ -3,30 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Götterläufe</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        a {
-            font-size: 20px;
-            color: #4CAF50;
-            text-decoration: none;
-            margin: 5px;
-            display: inline-block;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Abenteuer</title>
+    <link rel="stylesheet" href="/image/style.css">
 </head>
 <body>
 <h2>Eingetragene Abenteuer</h2>
 <div id="year-list">
     {{range .ADVENTURES}}
-        <a href="{{.Number}}">{{.Number}} - {{.Name}}</a><br>
+        <a href="{{.Number}}">{{.Name}}</a></a><br>
     {{end}}
 </div>
 <a href="/">Zurück</a>

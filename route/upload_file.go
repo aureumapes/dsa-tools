@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"slices"
 	"strings"
 )
 
@@ -31,14 +32,33 @@ func UploadFilePost(ctx *gin.Context) {
 		Name:    file.Filename,
 		Content: fmt.Sprintf("%d", oid),
 	})
+	os.Remove(path)
 	ctx.Redirect(http.StatusPermanentRedirect, "/files/"+file.Filename)
 }
 
 func FileGet(ctx *gin.Context) {
 	fileName := strings.TrimPrefix(ctx.Request.URL.Path, "/files/")
-	var file database.File
-	database.Db.Find(&file, "name=?", fileName)
-	var content string
-	database.Db.Raw("SELECT lo_get('" + file.Content + "')").Scan(&content)
-	ctx.Writer.Write([]byte(content))
+	if strings.Contains(fileName, ".") {
+		var file database.File
+		if database.Db.Find(&file, "name=?", strings.TrimSuffix(fileName, "/")).RowsAffected == 0 {
+			ctx.Status(404)
+			return
+		}
+		var content string
+		database.Db.Raw("SELECT lo_get('" + file.Content + "')").Scan(&content)
+		ctx.Writer.Write([]byte(content))
+	} else {
+		var files []database.File
+		filesStr := []string{
+			"..",
+		}
+		database.Db.Raw(fmt.Sprintf("SELECT * FROM files WHERE name LIKE '%s%s'", fileName, "%")).Scan(&files)
+		for _, file := range files {
+			fileN := strings.TrimPrefix(file.Name, fileName)
+			if !slices.Contains(filesStr, strings.Split(fileN, "/")[0]+"/") {
+				filesStr = append(filesStr, strings.Split(fileN, "/")[0]+"/")
+			}
+		}
+		ctx.HTML(http.StatusOK, "files.html", filesStr)
+	}
 }

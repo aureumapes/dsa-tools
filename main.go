@@ -1,15 +1,31 @@
 package main
 
 import (
+	"fmt"
 	"github.com/aureumapes/dsa-tools/database"
 	"github.com/aureumapes/dsa-tools/route"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"os"
 )
 
 func main() {
 	gin.SetMode(gin.ReleaseMode)
-	router := gin.Default()
+	router := gin.New()
+	logfile, _ := os.Create("dsa.log")
+	defer logfile.Close()
+	router.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+		Output: logfile,
+		Formatter: func(param gin.LogFormatterParams) string {
+			return fmt.Sprintf("[GIN] %s 	|%s\u001B[1;30m %3d %s	|%s %s %s	| %s\n",
+				param.ClientIP,
+				param.StatusCodeColor(), param.StatusCode, param.ResetColor(),
+				param.MethodColor(), param.Method, param.ResetColor(),
+				param.Path,
+			)
+		},
+	}))
+	router.Use(gin.Recovery())
 
 	database.Db.AutoMigrate(&database.Date{})
 	database.Db.AutoMigrate(&database.Entry{})

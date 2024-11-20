@@ -4,75 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalender</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-        }
-        #date, #time, #name {
-            font-size: 30px;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            color: white;
-        }
-        #date {
-            background-color: #606060;
-        }
-        #time {
-            background-color: #003366;
-        }
-        #name {
-            background: gold;
-            color: black;
-        }
-        #jubilees {
-            background: goldenrod;
-            color: #FFF;
-        }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        button:active {
-            background-color: #388e3c;
-        }
-        textarea {
-            width: 80%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-        }
-        textarea::placeholder {
-            color: #888;
-        }
-        .container {
-            margin-top: 20px;
-        }
-        .button-group {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .button-group button {
-            margin: 5px;
-        }
-    </style>
     <script src="https://cdn.rawgit.com/golang/go/refs/heads/master/lib/wasm/wasm_exec.js"></script>
     <script>
         const go = new Go();
@@ -80,6 +11,7 @@
             go.run(result.instance);
         });
     </script>
+    <link rel="stylesheet" href="/image/style.css">
 </head>
 <body>
 
