@@ -12,6 +12,25 @@ body {
   text-align: center;
 }
 
+h2 {
+  font-size: 1.8em;
+  color: rgb(163.5, 163.5, 163.5);
+  margin: 10px 0;
+}
+
+p {
+  margin: 0 0 0 30px;
+}
+
+.hero-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.hero-list li {
+  padding: 3px 0;
+}
+
 button {
   margin: 10px;
   padding: 10px 20px;
@@ -28,107 +47,6 @@ button:hover {
 }
 button:active {
   background-color: rgb(45.1155378486, 103.8844621514, 47.4900398406);
-}
-
-header, footer {
-  padding: 10px;
-  color: #4caf50;
-}
-header footer, footer footer {
-  font-size: 0.9em;
-  padding-top: 10px;
-}
-
-.container {
-  max-width: 600px;
-  margin-top: 20px;
-  padding: 20px;
-}
-
-.jubilee-container, table {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
-  background-color: #fff;
-  text-align: left;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  font-size: 1.8em;
-  color: rgb(163.5, 163.5, 163.5);
-  margin: 10px 0;
-}
-
-.hero-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.hero-list li {
-  padding: 3px 0;
-}
-
-p {
-  margin: 0 0 0 30px;
-}
-
-textarea {
-  width: 100%;
-  max-width: 600px;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
-}
-textarea::placeholder {
-  color: #888;
-}
-
-#date, #name, #time, #jubilees {
-  font-size: 30px;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  color: #fff;
-}
-#date#date, #name#date, #time#date, #jubilees#date {
-  background-color: #606060;
-}
-#date#time, #name#time, #time#time, #jubilees#time {
-  background-color: #036;
-}
-#date#name, #name#name, #time#name, #jubilees#name {
-  background: gold;
-  color: #000;
-}
-#date#jubilees, #name#jubilees, #time#jubilees, #jubilees#jubilees {
-  font-size: 15px;
-  list-style: none;
-}
-
-#jubilees {
-  background: #daa520;
-  color: #fff;
-}
-
-img {
-  width: 25px;
-  height: 25px;
-  position: fixed;
-  margin-top: -2px;
-}
-
-.button-group {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.button-group button {
-  margin: 5px;
 }
 
 a {
@@ -151,22 +69,45 @@ a:hover {
   transform: scale(1.05);
 }
 
-@media (min-width: 600px) {
-  a {
-    display: inline-block;
-    width: auto;
-    padding: 10px 15px;
-    font-size: 1.2em;
-    margin: 10px;
-  }
+textarea {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
 }
-@media (max-width: 1200px) {
-  .index-links {
-    font-size: 70px;
-    margin: 20px;
-    border: 3px solid #4caf50;
-  }
+textarea::placeholder {
+  color: #888;
 }
+
+.container {
+  max-width: 600px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.jubilee-container, table {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  text-align: left;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.button-group button {
+  margin: 5px;
+}
+
 table {
   width: 100%;
   max-width: 600px;
@@ -194,6 +135,62 @@ table tr:nth-child(even) {
 }
 table tr:last-child td {
   border-bottom: none;
+}
+
+header, footer {
+  padding: 10px;
+  color: #4caf50;
+}
+header footer, footer footer {
+  font-size: 0.9em;
+  padding-top: 10px;
+}
+
+#date, #name, #time, #jubilees {
+  font-size: 30px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  color: #fff;
+}
+#date#date, #name#date, #time#date, #jubilees#date {
+  background-color: #606060;
+}
+#date#time, #name#time, #time#time, #jubilees#time {
+  background-color: #036;
+}
+#date#name, #name#name, #time#name, #jubilees#name {
+  background: gold;
+  color: #000;
+}
+#date#jubilees, #name#jubilees, #time#jubilees, #jubilees#jubilees {
+  font-size: 15px;
+  list-style: none;
+  background: #daa520;
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  a {
+    display: inline-block;
+    width: auto;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    margin: 10px;
+  }
+}
+@media (max-width: 1200px) {
+  .index-links {
+    font-size: 70px;
+    margin: 20px;
+    border: 3px solid #4caf50;
+  }
+}
+img {
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  margin-top: -2px;
 }
 
 /*# sourceMappingURL=style.css.map */

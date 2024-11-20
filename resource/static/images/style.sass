@@ -1,3 +1,4 @@
+// Variablen
 $primary-color: #4caf50
 $secondary-color: #daa520
 $text-color: #333
@@ -6,6 +7,7 @@ $border-radius: 8px
 $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
 $transition: 0.3s
 
+// Globale Styles
 body
     display: flex
     justify-content: center
@@ -19,7 +21,26 @@ body
     padding: 20px
     text-align: center
 
-button 
+// Typografische Elemente
+h2
+    font-size: 1.8em
+    color: darken($background-color, 30%)
+    margin: 10px 0
+
+p
+    margin: 0 0 0 30px
+
+// Listen
+.hero-list
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+    li
+        padding: 3px 0
+
+// Buttons
+button
     margin: 10px
     padding: 10px 20px
     font-size: 18px
@@ -30,26 +51,52 @@ button
     color: #fff
     transition: background-color $transition
 
-    &:hover 
+    &:hover
         background-color: darken($primary-color, 10%)
 
-    &:active 
+    &:active
         background-color: darken($primary-color, 20%)
 
-header, footer 
-    padding: 10px
+// Links
+a
+    font-size: 1.5em
+    display: block
+    padding: 15px 20px
+    margin: 15px auto
     color: $primary-color
+    background: $background-color
+    text-decoration: none
+    border: 2px solid $primary-color
+    border-radius: $border-radius
+    transition: background-color $transition, color $transition, transform 0.2s
+    max-width: 90%
 
-    footer 
-        font-size: 0.9em
-        padding-top: 10px
+    &:hover
+        background-color: $primary-color
+        color: #fff
+        text-decoration: underline
+        transform: scale(1.05)
 
-.container 
+// Formularelemente
+textarea
+    width: 100%
+    max-width: 600px
+    padding: 10px
+    font-size: 16px
+    border-radius: $border-radius
+    border: 1px solid #ccc
+    margin-top: 10px
+
+    &::placeholder
+        color: #888
+
+// Container und Layouts
+.container
     max-width: 600px
     margin-top: 20px
     padding: 20px
 
-.jubilee-container, table 
+.jubilee-container, table
     width: 100%
     max-width: 600px
     margin: 20px auto
@@ -59,33 +106,53 @@ header, footer
     border-radius: $border-radius
     box-shadow: $box-shadow
 
-h2 
-    font-size: 1.8em
-    color: darken($background-color, 30%)
-    margin: 10px 0
+.button-group
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
 
-.hero-list 
-    list-style-type: none
-    padding: 0
-    margin: 0
-    li 
-        padding: 3px 0
+    button
+        margin: 5px
 
-p 
-    margin: 0 0 0 30px
-
-textarea 
+// Tabellen
+table
     width: 100%
     max-width: 600px
-    padding: 10px
-    font-size: 16px
+    margin: 20px auto
+    border-collapse: collapse
+    box-shadow: $box-shadow
     border-radius: $border-radius
-    border: 1px solid #ccc
-    margin-top: 10px
+    overflow: hidden
 
-    &::placeholder 
-        color: #888
+    th, td
+        padding: 10px 15px
+        text-align: left
+        border: 1px solid #f4f4f4
 
+    th
+        background-color: $primary-color
+        color: $background-color
+        font-weight: bold
+
+    tr:nth-child(odd)
+        background-color: #f4f4f4
+
+    tr:nth-child(even)
+        background-color: #dcdcdc
+
+    tr:last-child td
+        border-bottom: none
+
+// Header und Footer
+header, footer
+    padding: 10px
+    color: $primary-color
+
+    footer
+        font-size: 0.9em
+        padding-top: 10px
+
+// IDs
 #date, #name, #time, #jubilees
     font-size: 30px
     margin: 10px
@@ -106,46 +173,12 @@ textarea
     &#jubilees
         font-size: 15px
         list-style: none
-
-#jubilees 
-    background: $secondary-color
-    color: #fff
-
-img 
-    width: 25px
-    height: 25px
-    position: fixed
-    margin-top: -2px
-
-.button-group 
-    display: flex
-    justify-content: center
-    flex-wrap: wrap
-
-    button 
-        margin: 5px
-
-a 
-    font-size: 1.5em
-    display: block
-    padding: 15px 20px
-    margin: 15px auto
-    color: $primary-color
-    background: $background-color
-    text-decoration: none
-    border: 2px solid $primary-color
-    border-radius: $border-radius
-    transition: background-color $transition, color $transition, transform 0.2s
-    max-width: 90%
-
-    &:hover 
-        background-color: $primary-color
+        background: $secondary-color
         color: #fff
-        text-decoration: underline
-        transform: scale(1.05)
 
-@media (min-width: 600px) 
-    a 
+// Medienabfragen
+@media (min-width: 600px)
+    a
         display: inline-block
         width: auto
         padding: 10px 15px
@@ -158,30 +191,9 @@ a
         margin: 20px
         border: 3px solid $primary-color
 
-table 
-    width: 100%
-    max-width: 600px
-    margin: 20px auto
-    border-collapse: collapse
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
-    border-radius: 8px
-    overflow: hidden 
-
-    th, td 
-        padding: 10px 15px
-        text-align: left
-        border: 1px solid #f4f4f4
-
-    th 
-        background-color: $primary-color 
-        color: $background-color
-        font-weight: bold
-
-    tr:nth-child(odd) 
-        background-color: #f4f4f4
-
-    tr:nth-child(even)
-        background-color: #dcdcdc
-
-    tr:last-child td 
-        border-bottom: none
+// Bilder
+img
+    width: 25px
+    height: 25px
+    position: fixed
+    margin-top: -2px
