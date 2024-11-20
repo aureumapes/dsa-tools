@@ -1,8 +1,6 @@
 .idea/
 go.sum
 dsa-tools*
-resource/files/*
-!resource/files/placeholder.txt
 dsa.log
 resource/static/images/style.css
 resource/static/images/style.css.map
