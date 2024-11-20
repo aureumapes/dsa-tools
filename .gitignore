@@ -4,3 +4,4 @@ dsa-tools*
 resource/files/*
 !resource/files/placeholder.txt
 dsa.log
+resource/static/images/style.c*
