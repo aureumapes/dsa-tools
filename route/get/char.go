@@ -16,7 +16,7 @@ func Char(ctx *gin.Context) {
 func Chars(ctx *gin.Context) {
 	var chars []database.Char
 	database.Db.Find(&chars)
-	ctx.HTML(http.StatusOK, "chars.gohtml", chars)
+	ctx.HTML(http.StatusOK, "list_chars.gohtml", chars)
 }
 
 func NewCharGet(ctx *gin.Context) {

@@ -48,7 +48,7 @@ func main() {
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", nil)
 	})
-	router.GET("/time", get.Time)
+	router.GET("/time", get.MastersCalender)
 	router.GET("/newchar", get.NewCharGet)
 	router.GET("/favicon.ico", func(context *gin.Context) { context.Redirect(http.StatusPermanentRedirect, "/image/dsa.png") })
 	router.GET("/dates", get.ReadYears)

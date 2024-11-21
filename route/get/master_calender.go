@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func Time(ctx *gin.Context) {
+func MastersCalender(ctx *gin.Context) {
 	var dateStruct database.Date
 	database.Db.Last(&dateStruct)
 	date := fmt.Sprintf("%d. %s %dBF", dateStruct.Day, dateStruct.Month, dateStruct.Year)
@@ -20,5 +20,5 @@ func Time(ctx *gin.Context) {
 			jubilees = append(jubilees, fmt.Sprintf("%d. %s", year, jubilee.Name))
 		}
 	}
-	ctx.HTML(http.StatusOK, "time.gohtml", gin.H{"DATE": date, "JUBILEES": jubilees})
+	ctx.HTML(http.StatusOK, "masters_calender.gohtml", gin.H{"DATE": date, "JUBILEES": jubilees})
 }

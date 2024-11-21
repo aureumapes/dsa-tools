@@ -19,7 +19,7 @@ func Adventures(ctx *gin.Context) {
 			Number string
 		}{Name: adventure.Name, Number: adventure.Number})
 	}
-	ctx.HTML(http.StatusOK, "adventures.gohtml", gin.H{
+	ctx.HTML(http.StatusOK, "list_adventures.gohtml", gin.H{
 		"ADVENTURES": adventuresStrings,
 	})
 }

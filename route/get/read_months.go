@@ -17,5 +17,5 @@ func ReadMonths(ctx *gin.Context) {
 			months = append(months)
 		}
 	}
-	ctx.HTML(http.StatusOK, "read_moons.gohtml", gin.H{"MOONS": months, "YEAR": ctx.Params.ByName("year")})
+	ctx.HTML(http.StatusOK, "display_moons.gohtml", gin.H{"MOONS": months, "YEAR": ctx.Params.ByName("year")})
 }
