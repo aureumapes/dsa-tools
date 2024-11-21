@@ -52,7 +52,6 @@ func main() {
 	router.GET("/newchar", get.NewCharGet)
 	router.GET("/favicon.ico", func(context *gin.Context) { context.Redirect(http.StatusPermanentRedirect, "/image/dsa.png") })
 	router.GET("/dates", get.ReadYears)
-	router.GET("/jubilee", get.ReadJubilees)
 
 	router.Group("/adventure/").
 		GET("/", get.Adventures).
