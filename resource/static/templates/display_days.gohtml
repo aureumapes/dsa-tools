@@ -9,12 +9,16 @@
 <body>
 <div class="container">
     <a href="/dates/{{.YEAR}}">{{.YEAR}}BF</a>
+    <table>
     {{range .DAYS}}
-        <h3>{{.Name}}</h3>
-        {{range .Entry}}
-            <div class="entry">{{.}}</div>
-        {{end}}
+        <tr><th>{{.Name}}</th>
+        <td><div style="margin-left: 25px;">
+                {{range .Entry}}
+                    <div class="entry">{{.}}</div>
+                {{end}}
+            </div></td></tr>
     {{end}}
+    </table>
 </div>
 </body>
 </html>

@@ -18,13 +18,16 @@ func ReadDays(ctx *gin.Context) {
 		Entry []template.HTML
 	}
 	var dates []database.Date
-	database.Db.Find(&dates, "year = ? AND month = ?", ctx.Params.ByName("year"), ctx.Params.ByName("month"))
+	database.Db.Order("year,month,day").Find(&dates, "year = ? AND month = ?", ctx.Params.ByName("year"), ctx.Params.ByName("month"))
 	for _, date := range dates {
 		day := strconv.Itoa(int(date.Day))
 		if !slices.Contains(days, day) {
 			days = append(days, day)
 			var entry database.Entry
 			database.Db.Find(&entry, "date_refer = ?", date.ID)
+			if entry.Content == "" {
+				entry.Content = " --- "
+			}
 			entries := strings.ReplaceAll(entry.Content, "Tsatag", "<img src=\"/image/tsa.png\" width=\"10px\" style=\"width: 25px;height: 25px; position: fixed;margin-top: -2px;margin-left: -30px;\" title=\"Tsatag\" alt=\"\">")
 			entries = strings.ReplaceAll(entries, "Borontag", "<img src=\"/image/boron.png\" width=\"10px\" style=\"width: 25px;height: 25px; position: fixed;margin-top: -2px;margin-left: -30px;\" title=\"Boronstag\" alt=\"\">")
 			var entriesHTML []template.HTML
