@@ -9,4 +9,5 @@ type Date struct {
 	Day   int64
 	Month string `gorm:"type:months"`
 	Year  int64
+	Hour  int64
 }

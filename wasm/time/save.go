@@ -6,7 +6,7 @@ import (
 
 func SaveStatus() js.Func {
 	return js.FuncOf(func(this js.Value, args []js.Value) any {
-		text := js.Global().Get("document").Call("getElementById", "date").Get("innerText").String()
+		text := js.Global().Get("document").Call("getElementById", "date").Get("innerText").String() + " - " + js.Global().Get("document").Call("getElementById", "time").Get("innerText").String()
 		url := "/save"
 		data := js.ValueOf(map[string]any{
 			"method": "PUT",

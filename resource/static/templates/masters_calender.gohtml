@@ -10,13 +10,16 @@
         WebAssembly.instantiateStreaming(fetch("wasm/master_calender.wasm"), go.importObject).then((result) => {
             go.run(result.instance);
         });
+        setTimeout(function () {
+            hourName()
+        }, 500);
     </script>
     <link rel="stylesheet" href="/image/style.css">
 </head>
 <body>
 
 <div contenteditable="true" id="date">{{.DATE}}</div>
-<div id="time">00:00</div>
+<div id="time">{{.HOUR}}</div>
 <div id="name">Praiosstunde</div>
 <div id="jubilees">
     {{range .JUBILEES}}
