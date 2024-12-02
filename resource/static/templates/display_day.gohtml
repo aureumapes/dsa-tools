@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.DAY}}. {{.MOON}} {{.YEAR}}BF</title>
+    <link rel="stylesheet" href="/image/style.css">
+</head>
+<body>
+<div class="container">
+    <a href="/dates/{{.MOON}}">Alle Praiosläufe {{.MOON}} {{.YEAR}}BF</a>
+    <h2>Einträge {{.DAY}}. {{.MOON}} {{.YEAR}}BF</h2>
+    <table>
+        <tr>
+            <th></th><th>1.</th><th>2.</th>
+        </tr>
+        <tr>
+            <th>Praiosstunde</th><td>{{index .Entries 0}}</td><td>{{index .Entries 13}}</td>
+        </tr>
+        <tr>
+            <th>Rondrastunde</th><td>{{index .Entries 1}}</td><td>{{index .Entries 14}}</td>
+        </tr>
+        <tr>
+            <th>Efferdsstunde</th><td>{{index .Entries 2}}</td><td>{{index .Entries 15}}</td>
+        </tr>
+        <tr>
+            <th>Traviastunde</th><td>{{index .Entries 3}}</td><td>{{index .Entries 16}}</td>
+        </tr>
+        <tr>
+            <th>Boronsstunde</th><td>{{index .Entries 4}}</td><td>{{index .Entries 17}}</td>
+        </tr>
+        <tr>
+            <th>Hesindestunde</th><td>{{index .Entries 5}}</td><td>{{index .Entries 18}}</td>
+        </tr>
+        <tr>
+            <th>Firunsstunde</th><td>{{index .Entries 6}}</td><td>{{index .Entries 19}}</td>
+        </tr>
+        <tr>
+            <th>Tsastunde</th><td>{{index .Entries 7}}</td><td>{{index .Entries 20}}</td>
+        </tr>
+        <tr>
+            <th>Phexensstunde</th><td>{{index .Entries 8}}</td><td>{{index .Entries 21}}</td>
+        </tr>
+        <tr>
+            <th>Perainestunde</th><td>{{index .Entries 9}}</td><td>{{index .Entries 22}}</td>
+        </tr>
+        <tr>
+            <th>Ingerimmsstunde</th><td>{{index .Entries 10}}</td><td>{{index .Entries 23}}</td>
+        </tr>
+        <tr>
+            <th>Rahjasstunde</th><td>{{index .Entries 11}}</td><td>{{index .Entries 24}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

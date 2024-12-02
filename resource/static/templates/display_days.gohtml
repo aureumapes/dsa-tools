@@ -8,17 +8,11 @@
 </head>
 <body>
 <div class="container">
-    <a href="/dates/{{.YEAR}}">{{.YEAR}}BF</a>
-    <table>
+    <a href="/dates/{{.YEAR}}/">Alle Monde {{.YEAR}}BF</a>
+    <h2>Monde {{.YEAR}}BF</h2>
     {{range .DAYS}}
-        <tr><th>{{.Name}}</th>
-        <td><div style="margin-left: 25px;">
-                {{range .Entry}}
-                    <div class="entry">{{.}}</div>
-                {{end}}
-            </div></td></tr>
+        <a href="/dates/{{$.YEAR}}/{{$.MOON}}/{{.}}">{{.}}</a><br>
     {{end}}
-    </table>
 </div>
 </body>
 </html>

@@ -59,7 +59,8 @@ func main() {
 	router.Group("/dates").
 		GET("/", get.ReadYears).
 		GET("/:year", get.ReadMonths).
-		GET("/:year/:month", get.ReadDays)
+		GET("/:year/:month", get.ReadDays).
+		GET("/:year/:month/:day", get.ReadDay)
 	router.Group("/chars").
 		GET("/", get.Chars).
 		GET("/:name", get.Char)
