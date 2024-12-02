@@ -29,10 +29,9 @@ func ReadDay(ctx *gin.Context) {
 		daysHtml[date.Hour] = template.HTML("<div>" + entry.Content + "</div>")
 	}
 	for i := 0; i < 24; i++ {
-		if daysHtml[i] == "" {
+		if daysHtml[i] == "" || daysHtml[i] == "<div><span style=\"line-height: 1.5;\"></span></div>" {
 			daysHtml[i] = "---"
 		}
-
 	}
 	ctx.HTML(http.StatusOK, "display_day.gohtml", gin.H{
 		"DAY":     day,
@@ -40,5 +39,4 @@ func ReadDay(ctx *gin.Context) {
 		"YEAR":    year,
 		"Entries": daysHtml,
 	})
-	return
 }
