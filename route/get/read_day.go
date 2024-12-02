@@ -16,9 +16,6 @@ func ReadDay(ctx *gin.Context) {
 
 	database.Db.Order("year,month,day").Find(&days, "year = ? AND month = ? AND day = ?", year, month, day)
 
-	for i := 0; i < 24; i++ {
-		daysHtml[i] = "---"
-	}
 	for _, date := range days {
 		var entry database.Entry
 		database.Db.Find(&entry, "date_refer = ?", date.ID)
@@ -30,6 +27,12 @@ func ReadDay(ctx *gin.Context) {
 		entry.Content = strings.ReplaceAll(entry.Content, "Borontag", "<img src=\"/image/boron.png\" title=\"Boronstag\" alt=\"\">")
 		entry.Content = strings.ReplaceAll(entry.Content, "Tsatag", "<img src=\"/image/tsa.png\" title=\"Tsatag\" alt=\"\">\n")
 		daysHtml[date.Hour] = template.HTML("<div>" + entry.Content + "</div>")
+	}
+	for i := 0; i < 24; i++ {
+		if daysHtml[i] == "" {
+			daysHtml[i] = "---"
+		}
+
 	}
 	ctx.HTML(http.StatusOK, "display_day.gohtml", gin.H{
 		"DAY":     day,
