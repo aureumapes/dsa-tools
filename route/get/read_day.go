@@ -28,7 +28,7 @@ func ReadDay(ctx *gin.Context) {
 		}
 		entry.Content = strings.Join(entries, "<br>\n")
 		entry.Content = strings.ReplaceAll(entry.Content, "Borontag", "<img src=\"/image/boron.png\" title=\"Boronstag\" alt=\"\">")
-		entry.Content = strings.ReplaceAll(entry.Content, "Tsatag", "<img src=\"/image/tsa.png\" width=\"10px\" style=\"width: 25px;height: 25px; position: fixed;margin-top: -2px;margin-left: -30px;\" title=\"Tsatag\" alt=\"\">\n")
+		entry.Content = strings.ReplaceAll(entry.Content, "Tsatag", "<img src=\"/image/tsa.png\" title=\"Tsatag\" alt=\"\">\n")
 		daysHtml[date.Hour] = template.HTML("<div>" + entry.Content + "</div>")
 	}
 	ctx.HTML(http.StatusOK, "display_day.gohtml", gin.H{
