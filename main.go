@@ -44,6 +44,7 @@ func main() {
 	router.PUT("/entry", post.Entry)
 	router.PUT("/newchar", post.NewCharPut)
 
+	router.GET("/entries", get.ReadEntries)
 	router.GET("/upload", get.UploadFileGet)
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", nil)

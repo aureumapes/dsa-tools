@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einträge</title>
+    <link rel="stylesheet" href="/image/style.css">
+</head>
+<body>
+<header>
+    <h2>Einträge</h2>
+</header>
+<table>
+    <tr>
+        <th>Tag</th><th>Mond</th><th>Jahr</th><th>Stunde</th><th>Eintrag</th>
+    </tr>
+        {{range .}}
+            <tr>
+                <td>{{.Day}}</td>
+                <td>{{.Month}}</td>
+                <td>{{.Year}}</td>
+                <td>{{.Hour}}</td>
+                <td>{{.Content}}</td>
+            </tr>
+        {{end}}
+</table>
+<a href="/adventure">Zurück</a>
+</body>
+</html>
